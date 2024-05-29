@@ -4,7 +4,7 @@ import ProgressBar from './ProgressBar';
 
 const Monster = () => {
   const monster = useSelector(state => state.fight.monster);
-
+  console.log(monster)
   return (
     <section>
       <div className="container">
