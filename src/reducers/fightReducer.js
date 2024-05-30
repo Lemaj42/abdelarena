@@ -5,10 +5,11 @@ const initialState = {
     players: [
         { name: "John", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 0 },
         { name: "Jack", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 1 },
-        { name: "Jessy", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 2 },
-        { name: "Jenny", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 3 }
+
+
+
     ],
-    monster: { pv: 200, pvMax: 800 }
+    monster: { pv: 800, pvMax: 800 }
 }
 
 export const fightSlice = createSlice({
@@ -29,7 +30,7 @@ export const fightSlice = createSlice({
             )
         },
         hitback: (state, action) => {
-            const id = Math.floor(Math.random() * 4)
+            const id = Math.floor(Math.random() * state.players.length)
             const damage = action.payload
             if (state.players[id].pv < 0) {
                 state.players[id].pv = 0;

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ProgressBar from './ProgressBar';
+import MonsterImage from "../assets/images/Monster.gif";
+import VicotyImage from "../assets/images/Victory.jpg";
 
 const Monster = () => {
   const monster = useSelector(state => state.fight.monster);
@@ -16,12 +18,12 @@ const Monster = () => {
                   <div className="col-sm-2 offset-sm-3">
                     <span className="badge badge-danger ml-2" id="degatSpanMonster"></span>
                     {monster.pv > 0 ? (
-                      <img className="img-fluid" src="http://res.publicdomainfiles.com/pdf_view/67/13925387417373.png" alt='monster' />
+                      <img className="img-fluid" src={MonsterImage} alt='monster' />
                     ) : (
-                      <><h1>
-                        Vous avez gagné
-                      </h1>
-                        <img className="img-fluid" src="https://i0.wp.com/centres-dinteret-jeux-video.com/wp-content/uploads/2020/08/Victory.png?w=476&ssl=1" alt='monster dead' /></>
+                      <>
+                        <h1>Vous avez gagné</h1>
+                        <img className="img-fluid" src={VicotyImage} alt='monster' />
+                      </>
                     )}
                   </div>
                   <div id="comboOnMonster" className="col-sm-6"></div>
@@ -37,3 +39,4 @@ const Monster = () => {
 }
 
 export default Monster;
+
