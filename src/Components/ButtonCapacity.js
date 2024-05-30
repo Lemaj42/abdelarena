@@ -7,12 +7,12 @@ const ButtonCapacity = () => {
 
     const combat = () => {
         dispatch(
-            hitMonster(30)
+            hitMonster(50)
         );
 
         setTimeout(() => {
             dispatch(
-                hitback(30)
+                hitback(50)
             )
         }, 2000);
     };

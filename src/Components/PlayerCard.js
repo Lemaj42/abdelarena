@@ -21,7 +21,6 @@ const PlayerCard = ({ player }) => {
                         <ButtonCapacity player={player} />
                         <ButtonCapacity player={player} />
                         <ButtonCapacity player={player} />
-
                     </div>
                 </div >
             </div >

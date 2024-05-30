@@ -8,7 +8,7 @@ const initialState = {
         { name: "Jessy", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 2 },
         { name: "Jenny", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 3 }
     ],
-    monster: { pv: 800, pvMax: 800 }
+    monster: { pv: 200, pvMax: 800 }
 }
 
 export const fightSlice = createSlice({
@@ -17,12 +17,31 @@ export const fightSlice = createSlice({
     reducers: {
         hitMonster: (state, action) => {
             const damage = action.payload
-            state.monster.pv -= damage
+            if (state.monster.pv === 0) {
+                return console.log("le monstre est mort");
+            }
+            else (
+                state.monster.pv -= damage)
+
+            if (state.monster.pv < 0) {
+                state.monster.pv = 0;
+            }
         },
         hitback: (state, action) => {
             const id = Math.floor(Math.random() * 4)
             const damage = action.payload
-            state.players[id].pv -= damage
+
+
+            if (
+                state.monster.pv === 0
+            ) return console.log("le monstre ne peut pas taper il est mort");
+            else (
+                state.players[id].pv -= damage
+            )
+
+            if (state.players[id].pv < 0) {
+                state.players[id].pv = 0;
+            }
         }
     },
 })
