@@ -14,7 +14,7 @@ const ButtonCapacity = () => {
             dispatch(
                 hitback(50)
             )
-        }, 2000);
+        }, 1000);
     };
 
 
