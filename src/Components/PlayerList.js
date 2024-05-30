@@ -1,6 +1,7 @@
 import React from 'react';
 import PlayerCard from './PlayerCard';
 import { useSelector } from 'react-redux';
+import LooseImage from "../assets/images/loose.gif";
 
 
 const PlayerList = () => {
@@ -18,7 +19,7 @@ const PlayerList = () => {
     <div className='row'>
       {allPlayersAreDead ? (
         <div className="text-center">
-          <img className="img-fluid" src="file:///home/garage404/Exo/abdelarena/nul.webp" alt='nul' />
+          <img className="img-fluid" src={LooseImage} alt='monster' />
           <h2 className="mt-3">Vous avez perdu</h2>
         </div>
       ) : (
