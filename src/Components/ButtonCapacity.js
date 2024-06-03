@@ -17,8 +17,6 @@ const ButtonCapacity = () => {
         }, 1000);
     };
 
-
-
     return (
         <button type="button" onClick={combat} className="btn btn-success material-tooltip-main">
             hit

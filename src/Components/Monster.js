@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ProgressBar from './ProgressBar';
-import MonsterImage from "../assets/images/Monster.gif";
+import MonsterImage from "../assets/images/Monsters/Monster.gif";
 import VicotyImage from "../assets/images/Victory.jpg";
 
 const Monster = () => {
@@ -30,6 +30,7 @@ const Monster = () => {
                 </div>
               </div>
               <ProgressBar pv={monster.pv} pvMax={monster.pvMax} bgType='bg-danger' faType='fa-heart' barName=' : pv' />
+              <ProgressBar pv={monster.mana} pvMax={monster.manaMax} faType='fa-fire-alt' barName=' : mana ' />
             </div>
           </div>
         </div>

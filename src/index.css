@@ -4,4 +4,36 @@
   margin-right: auto;
 }
 
-.loosetittre {}
+.loosetittre {
+  font-size: 2em;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+}
+
+.card {
+  margin: 10px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  background-image: url("./assets/images/BG.jpg");
+  background-size: cover;
+}
+
+.Carte1 {
+  background-color: transparent !important;
+}
+
+.tittre {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+}

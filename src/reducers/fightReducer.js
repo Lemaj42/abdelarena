@@ -1,15 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
+import Player1 from "../assets/images/players/Player1.gif";
+import Player2 from "../assets/images/players/Player2.gif";
+import Player3 from "../assets/images/players/Player3.gif";
+import Player4 from "../assets/images/players/Player4.gif";
 
 
 const initialState = {
     players: [
-        { name: "John", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 0 },
-        { name: "Jack", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 1 },
-
-
-
+        { name: "Einstein", pv: 100, pvMax: 100, mana: 30, manaMax: 30, img: Player1, id: 0 },
+        { name: "Hawking", pv: 100, pvMax: 100, mana: 30, manaMax: 30, img: Player2, id: 1 },
+        { name: "Darwin", pv: 100, pvMax: 100, mana: 30, manaMax: 30, img: Player3, id: 2 },
+        { name: "Tesla", pv: 100, pvMax: 100, mana: 30, manaMax: 30, img: Player4, id: 3 }
     ],
-    monster: { pv: 800, pvMax: 800 }
+    monster: { pv: 800, pvMax: 800, mana: 300, manaMax: 30 }
 }
 
 export const fightSlice = createSlice({

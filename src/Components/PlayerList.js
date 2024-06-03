@@ -23,7 +23,13 @@ const PlayerList = () => {
           <h2 className="mt-3">Vous avez perdu</h2>
         </div>
       ) : (
-        displayPlayers()
+        <div className='container'>
+          <div className='row justify-content-center'>
+
+            {displayPlayers()}
+          </div>
+
+        </div>
       )}
     </div>
   );
