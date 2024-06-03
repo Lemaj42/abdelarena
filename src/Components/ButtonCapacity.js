@@ -1,18 +1,25 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { hitback, hitMonster } from "../reducers/fightReducer";
+import { hitback, hitMonster, getMana, getManaMonster } from "../reducers/fightReducer";
 
-const ButtonCapacity = () => {
+const ButtonCapacity = (props) => {
+
     const dispatch = useDispatch();
 
     const combat = () => {
         dispatch(
             hitMonster(50)
         );
+        (
+            getMana({ id: props.player.id, mana: 5 })
+        )
 
         setTimeout(() => {
             dispatch(
                 hitback(50)
+            )
+            dispatch(
+                getManaMonster(30)
             )
         }, 1000);
     };

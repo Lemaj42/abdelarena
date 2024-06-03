@@ -12,7 +12,7 @@ const initialState = {
         { name: "Darwin", pv: 100, pvMax: 100, mana: 30, manaMax: 30, img: Player3, id: 2 },
         { name: "Tesla", pv: 100, pvMax: 100, mana: 30, manaMax: 30, img: Player4, id: 3 }
     ],
-    monster: { pv: 800, pvMax: 800, mana: 300, manaMax: 30 }
+    monster: { pv: 200, pvMax: 200, mana: 300, manaMax: 300 }
 }
 
 export const fightSlice = createSlice({
@@ -26,28 +26,36 @@ export const fightSlice = createSlice({
             }
 
             if (state.monster.pv === 0) {
-                return console.log("le monstre est mort");
+                console.log("le monstre est mort");
             }
-            else (
-                state.monster.pv -= damage
-            )
+            else {
+                state.monster.pv -= damage;
+
+            }
         },
         hitback: (state, action) => {
-            const id = Math.floor(Math.random() * state.players.length)
-            const damage = action.payload
+            const id = Math.floor(Math.random() * state.players.length);
+            const damage = action.payload;
             if (state.players[id].pv < 0) {
                 state.players[id].pv = 0;
             }
 
-            if (
-                state.players[id].pv === 0
-            ) return console.log("le monstre ne peut pas taper il est mort");
-            else (
-                state.players[id].pv -= damage
-            )
+            if (state.players[id].pv === 0) {
+                console.log("le joueur est mort");
+            } else {
+                state.players[id].pv -= damage;
+            }
+        },
+        getMana: (state, action) => {
+            const id = action.payload.id
+            state.players[id].mana -= action.payload.mana
+        },
+        getManaMonster: (state, action) => {
+            console.log(action);
+            state.monster.mana -= action.payload
         }
     },
 })
 
-export const { hitMonster, hitback } = fightSlice.actions
+export const { hitMonster, hitback, getMana, getManaMonster } = fightSlice.actions
 export default fightSlice.reducer
