@@ -12,6 +12,9 @@ const initialState = {
         { name: "Darwin", pv: 100, pvMax: 100, mana: 30, manaMax: 30, img: Player3, id: 2 },
         { name: "Tesla", pv: 100, pvMax: 100, mana: 30, manaMax: 30, img: Player4, id: 3 }
     ],
+
+    isPlayerAttacking: [],
+
     monster: { pv: 200, pvMax: 200, mana: 300, manaMax: 300 }
 }
 
@@ -34,8 +37,8 @@ export const fightSlice = createSlice({
             }
         },
         hitback: (state, action) => {
-            const id = Math.floor(Math.random() * state.players.length);
-            const damage = action.payload;
+            const id = Math.floor(Math.random() * state.players.length)
+            const damage = action.payload
             if (state.players[id].pv < 0) {
                 state.players[id].pv = 0;
             }
@@ -53,9 +56,12 @@ export const fightSlice = createSlice({
         getManaMonster: (state, action) => {
             console.log(action);
             state.monster.mana -= action.payload
+        },
+        addIdIsPlayerAttacking: (state, action) => {
+            state.isPlayerAttacking.push(action.payload)
         }
     },
 })
 
-export const { hitMonster, hitback, getMana, getManaMonster } = fightSlice.actions
+export const { hitMonster, hitback, getMana, getManaMonster, addIdIsPlayerAttacking } = fightSlice.actions
 export default fightSlice.reducer

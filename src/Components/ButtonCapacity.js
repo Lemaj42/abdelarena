@@ -1,27 +1,41 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { hitback, hitMonster, getMana, getManaMonster } from "../reducers/fightReducer";
+import { useDispatch, useSelector } from 'react-redux';
+import { hitback, hitMonster, getMana, getManaMonster, addIdIsPlayerAttacking } from "../reducers/fightReducer";
 
 const ButtonCapacity = (props) => {
 
     const dispatch = useDispatch();
+    let isPlayerAttacking = useSelector(state => state.fight.isPlayerAttacking);
 
     const combat = () => {
-        dispatch(
-            hitMonster(50)
-        );
-        (
-            getMana({ id: props.player.id, mana: 5 })
-        )
+        let tour = true
+        isPlayerAttacking.map((player) => {
+            if (player === props.player.id) {
+                tour = false
+            }
+        })
+        console.log(tour);
+        if (tour === true) {
 
-        setTimeout(() => {
             dispatch(
-                hitback(50)
+                hitMonster(50)
+            );
+            (
+                getMana({ id: props.player.id, mana: 5 })
             )
+            setTimeout(() => {
+                dispatch(
+                    hitback(50)
+                )
+                dispatch(
+                    getManaMonster(30)
+                )
+            }, 1000);
             dispatch(
-                getManaMonster(30)
+                (addIdIsPlayerAttacking(props.player.id))
             )
-        }, 1000);
+
+        }
     };
 
     return (
