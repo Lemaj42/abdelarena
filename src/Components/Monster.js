@@ -21,7 +21,7 @@ const Monster = () => {
             <div id="monsterCard">
               <div className="text-center">
                 <div className="row">
-                  <div className="col-sm-2 offset-sm-3">
+                  <div>
                     <span className="badge badge-danger ml-2" id="degatSpanMonster"></span>
                     {monster.pv > 0 ? (
                       <img className="img-fluid" src={MonsterImage} alt='monster' />
