@@ -11,6 +11,7 @@ const PlayerList = () => {
 
   const displayPlayers = () => {
     return players.map((player, key) => (
+
       <PlayerCard key={player.id} player={player} />
     ));
   }

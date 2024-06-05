@@ -15,7 +15,7 @@ const initialState = {
 
     isPlayerAttacking: [],
 
-    monster: { pv: 200, pvMax: 200, mana: 300, manaMax: 300 }
+    monster: { pv: 800, pvMax: 800, mana: 300, manaMax: 300 }
 }
 
 export const fightSlice = createSlice({
@@ -23,45 +23,51 @@ export const fightSlice = createSlice({
     initialState,
     reducers: {
         hitMonster: (state, action) => {
-            const damage = action.payload
+            const damage = action.payload;
             if (state.monster.pv < 0) {
                 state.monster.pv = 0;
             }
 
             if (state.monster.pv === 0) {
-                console.log("le monstre est mort");
-            }
-            else {
+            } else {
                 state.monster.pv -= damage;
-
             }
         },
         hitback: (state, action) => {
-            const id = Math.floor(Math.random() * state.players.length)
-            const damage = action.payload
+            const id = Math.floor(Math.random() * state.players.length);
+            const damage = action.payload;
             if (state.players[id].pv < 0) {
                 state.players[id].pv = 0;
             }
 
             if (state.players[id].pv === 0) {
-                console.log("le joueur est mort");
             } else {
                 state.players[id].pv -= damage;
             }
         },
         getMana: (state, action) => {
-            const id = action.payload.id
-            state.players[id].mana -= action.payload.mana
+            const id = action.payload.id;
+            state.players[id].mana -= action.payload.mana;
         },
         getManaMonster: (state, action) => {
-            console.log(action);
-            state.monster.mana -= action.payload
+            state.monster.mana -= action.payload;
         },
         addIdIsPlayerAttacking: (state, action) => {
-            state.isPlayerAttacking.push(action.payload)
-        }
-    },
-})
+            state.isPlayerAttacking.push(action.payload);
+        },
+        heal: (state, action) => {
+            const { playerId, healthRestored, manacost } = action.payload;
+            const player = state.players[playerId];
+            if (player.mana >= manacost) {
+                player.pv += healthRestored;
+                player.mana -= manacost;
+            }
+        },
+        removetour: (state) => {
+            state.isPlayerAttacking = [];
+        },
+    }
+});
 
-export const { hitMonster, hitback, getMana, getManaMonster, addIdIsPlayerAttacking } = fightSlice.actions
+export const { hitMonster, hitback, getMana, getManaMonster, addIdIsPlayerAttacking, heal, removetour } = fightSlice.actions
 export default fightSlice.reducer

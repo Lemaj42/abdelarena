@@ -1,8 +1,9 @@
 import React from 'react';
 import ProgressBar from './ProgressBar';
-import ButtonCapacity from "./ButtonCapacity";
+import { ButtonCapacity } from './ButtonCapacity';
 
 const PlayerCard = ({ player }) => {
+
     return (
         <div key={player.id} className="Carte1 col-lg-2 col-md-4 col-sm-12 card center" id={`joueur${player.id}`}>
             {player.pv > 0 ? (
@@ -14,11 +15,12 @@ const PlayerCard = ({ player }) => {
                     <span className="badge badge-danger ml-2" id="degatSpanJ1"></span>
                     <div className="container text-center">
                         <div className="row justify-content-center">
-                            {[...Array(2)].map((_, i) => (
-                                <div key={i} className='col-3'>
-                                    <ButtonCapacity player={player} />
-                                </div>
-                            ))}
+                            <div className='col-3'>
+                                <ButtonCapacity name='gifle' capacityType='combat' player={player} />
+                            </div>
+                            <div className='col-3'>
+                                <ButtonCapacity name='heal' capacityType='deffence' player={player} />
+                            </div>
                         </div>
                     </div>
                 </div>
