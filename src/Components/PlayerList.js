@@ -1,7 +1,7 @@
 import React from 'react';
 import PlayerCard from './PlayerCard';
 import { useSelector, useDispatch } from 'react-redux';
-import LooseImage from "../assets/images/loose.gif";
+import imgLoose from '../assets/images/loose.gif';
 import { resetGameLoose } from '../reducers/fightReducer';
 
 
@@ -27,7 +27,7 @@ const PlayerList = () => {
     <div className='row'>
       {allPlayersAreDead ? (
         <div className="text-center">
-          <img className="img-fluid" src={LooseImage} alt='monster' />
+          <img className="img-fluid" src={imgLoose} alt='monster' />
           <h2 className="mt-3">Vous avez perdu</h2>
           <button className="btn btn-primary mt-3" onClick={handleResetGame}>Recommencer</button>
         </div>
