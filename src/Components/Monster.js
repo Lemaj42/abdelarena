@@ -1,11 +1,17 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import ProgressBar from './ProgressBar';
 import MonsterImage from "../assets/images/Monsters/Monster.gif";
-import VicotyImage from "../assets/images/Victory.jpg";
+import imgVictory from "../assets/images/Victory.jpg";
+import { resetGameWin } from "../reducers/fightReducer";
 
 const Monster = () => {
   const monster = useSelector(state => state.fight.monster);
+  const dispatch = useDispatch();
+
+  const handleResetGameWin = () => {
+    dispatch(resetGameWin());
+  };
 
   return (
     <section>
@@ -22,7 +28,8 @@ const Monster = () => {
                     ) : (
                       <>
                         <h1>Vous avez gagné</h1>
-                        <img className="img-fluid" src={VicotyImage} alt='monster' />
+                        <img className="img-fluid" src={imgVictory} alt='victory' />
+                        <button className="btn btn-primary mt-3" onClick={handleResetGameWin}>Recommencer</button>
                       </>
                     )}
                   </div>
@@ -30,7 +37,7 @@ const Monster = () => {
                 </div>
               </div>
               <ProgressBar pv={monster.pv} pvMax={monster.pvMax} bgType='bg-danger' faType='fa-heart' barName=' : pv' />
-              <ProgressBar pv={monster.mana} pvMax={monster.manaMax} faType='fa-fire-alt' barName=' : mana ' />
+              {/* <ProgressBar pv={monster.mana} pvMax={monster.manaMax} faType='fa-fire-alt' barName=' : mana ' /> */}
             </div>
           </div>
         </div>
@@ -40,4 +47,3 @@ const Monster = () => {
 }
 
 export default Monster;
-

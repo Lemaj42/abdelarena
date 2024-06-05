@@ -3,6 +3,7 @@ import Player1 from "../assets/images/players/Player1.gif";
 import Player2 from "../assets/images/players/Player2.gif";
 import Player3 from "../assets/images/players/Player3.gif";
 import Player4 from "../assets/images/players/Player4.gif";
+import { tab } from '@testing-library/user-event/dist/tab';
 
 
 const initialState = {
@@ -15,7 +16,7 @@ const initialState = {
 
     isPlayerAttacking: [],
 
-    monster: { pv: 800, pvMax: 800, mana: 300, manaMax: 300 }
+    monster: { pv: 150, pvMax: 800 }
 }
 
 export const fightSlice = createSlice({
@@ -33,8 +34,26 @@ export const fightSlice = createSlice({
                 state.monster.pv -= damage;
             }
         },
+        spellPlayer: (state, action) => {
+            const poison = action.payload;
+            if (state.monster.pv < 0) {
+                state.monster.pv = 0;
+            }
+
+
+        },
         hitback: (state, action) => {
-            const id = Math.floor(Math.random() * state.players.length);
+            let tableauId = [];
+
+            let nbPlayersAlive = 0;
+            state.players.map((player) => {
+                if (player.pv > 0) {
+                    tableauId.push(player.id);
+                    nbPlayersAlive++;
+                }
+            });
+            const nbId = Math.floor(Math.random() * nbPlayersAlive);
+            const id = tableauId[nbId];
             const damage = action.payload;
             if (state.players[id].pv < 0) {
                 state.players[id].pv = 0;
@@ -49,9 +68,9 @@ export const fightSlice = createSlice({
             const id = action.payload.id;
             state.players[id].mana -= action.payload.mana;
         },
-        getManaMonster: (state, action) => {
-            state.monster.mana -= action.payload;
-        },
+        // getManaMonster: (state, action) => {
+        //     state.monster.mana -= action.payload;
+        // },
         addIdIsPlayerAttacking: (state, action) => {
             state.isPlayerAttacking.push(action.payload);
         },
@@ -66,8 +85,41 @@ export const fightSlice = createSlice({
         removetour: (state) => {
             state.isPlayerAttacking = [];
         },
+        resetGameLoose: (state) => {
+            state.players = initialState.players.map(player => ({
+                ...player,
+                pv: player.pvMax,
+                mana: player.manaMax,
+            }));
+            state.monster = { ...initialState.monster };
+        },
+        resetGameWin: (state) => {
+            state.players = initialState.players.map(player => ({
+                ...player,
+                pv: player.pvMax,
+                mana: player.manaMax,
+            }));
+            state.monster = { ...initialState.monster };
+        },
+        spellPlayer: (state, action) => {
+            const { playerId } = action.payload;
+            const player = state.players[playerId];
+
+            // 30% de réduction des PV du monstre
+            const damage = state.monster.pv * 0.3;
+            state.monster.pv -= damage;
+            if (state.monster.pv < 0) {
+                state.monster.pv = 0;
+            }
+
+            // 50% de réduction de la mana du joueur
+            player.mana *= 0.5;
+            if (player.mana < 0) {
+                player.mana = 0;
+            }
+        },
     }
 });
 
-export const { hitMonster, hitback, getMana, getManaMonster, addIdIsPlayerAttacking, heal, removetour } = fightSlice.actions
+export const { hitMonster, hitback, getMana, getManaMonster, addIdIsPlayerAttacking, heal, removetour, resetGameLoose, resetGameWin, spellPlayer } = fightSlice.actions
 export default fightSlice.reducer

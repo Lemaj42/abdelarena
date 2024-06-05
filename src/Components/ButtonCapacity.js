@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { hitback, hitMonster, getMana, getManaMonster, addIdIsPlayerAttacking, heal, removetour } from "../reducers/fightReducer";
+import { hitback, hitMonster, getMana, getManaMonster, addIdIsPlayerAttacking, heal, removetour, spellPlayer } from "../reducers/fightReducer";
 
 export const ButtonCapacity = (props) => {
     const state = useSelector(state => state.fight);
@@ -41,9 +41,9 @@ export const ButtonCapacity = (props) => {
                 dispatch(
                     hitback(50)
                 );
-                dispatch(
-                    getManaMonster(30)
-                );
+                // dispatch(
+                //     getManaMonster(0)
+                // );
             }, 1000);
             dispatch(
                 addIdIsPlayerAttacking(props.player.id)
@@ -59,16 +59,34 @@ export const ButtonCapacity = (props) => {
                 dispatch(
                     hitback(50)
                 );
-                dispatch(
-                    getManaMonster(30)
-                );
-            }, 1000);
+                // dispatch(
+                //     getManaMonster(0)
+                // );
+            }, 800);
             dispatch(
                 addIdIsPlayerAttacking(props.player.id)
             );
         }
     };
 
+    const magie = () => {
+        if (verifPlayer(props.player.id, isPlayerAttacking)) {
+            dispatch(
+                spellPlayer({ playerId: props.player.id }) // Passez playerId dans l'action spellPlayer
+            );
+            setTimeout(() => {
+                dispatch(
+                    hitback(50)
+                );
+                // dispatch(
+                //     getManaMonster(0)
+                // );
+            }, 800);
+            dispatch(
+                addIdIsPlayerAttacking(props.player.id)
+            );
+        }
+    };
 
     const handleClick = () => {
         if (props.capacityType === "combat") {
@@ -76,6 +94,10 @@ export const ButtonCapacity = (props) => {
         } else if (props.capacityType === "deffence") {
             console.log("deffence");
             deffence();
+        }
+        else if (props.capacityType === "magie") {
+            console.log("magie");
+            magie();
         }
     };
 

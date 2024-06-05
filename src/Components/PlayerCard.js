@@ -21,6 +21,9 @@ const PlayerCard = ({ player }) => {
                             <div className='col-3'>
                                 <ButtonCapacity name='heal' capacityType='deffence' player={player} />
                             </div>
+                            <div className='col-3'>
+                                <ButtonCapacity name='Sort' capacityType='magie' player={player} />
+                            </div>
                         </div>
                     </div>
                 </div>
