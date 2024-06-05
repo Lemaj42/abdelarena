@@ -16,10 +16,10 @@ const PlayerCard = ({ player }) => {
                     <div className="container text-center">
                         <div className="row justify-content-center">
                             <div className='col-3'>
-                                <ButtonCapacity name='gifle' capacityType='combat' player={player} />
+                                <ButtonCapacity name='Punch' capacityType='combat' player={player} />
                             </div>
                             <div className='col-3'>
-                                <ButtonCapacity name='heal' capacityType='deffence' player={player} />
+                                <ButtonCapacity name='Heal' capacityType='deffence' player={player} />
                             </div>
                             <div className='col-3'>
                                 <ButtonCapacity name='Sort' capacityType='magie' player={player} />

@@ -36,7 +36,9 @@ const Monster = () => {
                   <div id="comboOnMonster" className="col-sm-6"></div>
                 </div>
               </div>
-              <ProgressBar pv={monster.pv} pvMax={monster.pvMax} bgType='bg-danger' faType='fa-heart' barName=' : pv' />
+              {monster.pv > 0 && (
+                <ProgressBar pv={monster.pv} pvMax={monster.pvMax} bgType='bg-danger' faType='fa-heart' barName=' : pv' />
+              )}
               {/* <ProgressBar pv={monster.mana} pvMax={monster.manaMax} faType='fa-fire-alt' barName=' : mana ' /> */}
             </div>
           </div>

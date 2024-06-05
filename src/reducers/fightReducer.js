@@ -16,7 +16,7 @@ const initialState = {
 
     isPlayerAttacking: [],
 
-    monster: { pv: 150, pvMax: 800 }
+    monster: { pv: 750, pvMax: 800 }
 }
 
 export const fightSlice = createSlice({
@@ -33,6 +33,7 @@ export const fightSlice = createSlice({
             } else {
                 state.monster.pv -= damage;
             }
+            console.log("coup");
         },
         spellPlayer: (state, action) => {
             const poison = action.payload;

@@ -13,7 +13,7 @@ export const ButtonCapacity = (props) => {
                 nbPlayersAlive++;
             }
         });
-        if (isPlayerAttacking.length === nbPlayersAlive) {
+        if (isPlayerAttacking.length >= nbPlayersAlive) {
             dispatch(removetour());
         }
         else {
