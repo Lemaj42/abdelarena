@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { hitback, hitMonster, getMana, getManaMonster, addIdIsPlayerAttacking, heal, removetour, spellPlayer } from "../reducers/fightReducer";
+import { hitback, hitMonster, getMana, addIdIsPlayerAttacking, heal, removetour, spellPlayer } from "../reducers/fightReducer";
 
 export const ButtonCapacity = (props) => {
     const state = useSelector(state => state.fight);
@@ -39,7 +39,7 @@ export const ButtonCapacity = (props) => {
             );
             setTimeout(() => {
                 dispatch(
-                    hitback(50)
+                    hitback(10)
                 );
                 // dispatch(
                 //     getManaMonster(0)
@@ -57,7 +57,7 @@ export const ButtonCapacity = (props) => {
             );
             setTimeout(() => {
                 dispatch(
-                    hitback(50)
+                    hitback(10)
                 );
                 // dispatch(
                 //     getManaMonster(0)

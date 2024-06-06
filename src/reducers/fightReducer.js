@@ -3,7 +3,6 @@ import Player1 from "../assets/images/players/Player1.gif";
 import Player2 from "../assets/images/players/Player2.gif";
 import Player3 from "../assets/images/players/Player3.gif";
 import Player4 from "../assets/images/players/Player4.gif";
-import { tab } from '@testing-library/user-event/dist/tab';
 
 
 const initialState = {
@@ -16,7 +15,7 @@ const initialState = {
 
     isPlayerAttacking: [],
 
-    monster: { pv: 750, pvMax: 800 }
+    monster: { pv: 800, pvMax: 800 }
 }
 
 export const fightSlice = createSlice({
@@ -33,15 +32,6 @@ export const fightSlice = createSlice({
             } else {
                 state.monster.pv -= damage;
             }
-            console.log("coup");
-        },
-        spellPlayer: (state, action) => {
-            const poison = action.payload;
-            if (state.monster.pv < 0) {
-                state.monster.pv = 0;
-            }
-
-
         },
         hitback: (state, action) => {
             let tableauId = [];
@@ -85,6 +75,15 @@ export const fightSlice = createSlice({
         },
         removetour: (state) => {
             state.isPlayerAttacking = [];
+            state.players.forEach(player => {
+                if (player.pv > 0) { // Vérifiez si le joueur est encore en vie
+                    player.mana += 15;
+                    if (player.mana > player.manaMax) {
+                        player.mana = player.manaMax;
+                    }
+                }
+                console.log(player.mana);
+            });
         },
         resetGameLoose: (state) => {
             state.players = initialState.players.map(player => ({

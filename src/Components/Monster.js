@@ -1,17 +1,12 @@
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ProgressBar from './ProgressBar';
 import MonsterImage from "../assets/images/Monsters/Monster.gif";
 import imgVictory from "../assets/images/Victory.jpg";
-import { resetGameWin } from "../reducers/fightReducer";
+
 
 const Monster = () => {
   const monster = useSelector(state => state.fight.monster);
-  const dispatch = useDispatch();
-
-  const handleResetGameWin = () => {
-    dispatch(resetGameWin());
-  };
 
   return (
     <section>
@@ -29,7 +24,10 @@ const Monster = () => {
                       <>
                         <h1>Vous avez gagné</h1>
                         <img className="img-fluid" src={imgVictory} alt='victory' />
-                        <button className="btn btn-primary mt-3" onClick={handleResetGameWin}>Recommencer</button>
+                        <form action="">
+
+                          <button className="button1">Recommencer</button>
+                        </form>
                       </>
                     )}
                   </div>
