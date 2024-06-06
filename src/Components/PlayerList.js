@@ -25,10 +25,8 @@ const PlayerList = () => {
                     </>
                 </div>
             ) : (
-                <div className='container'>
-                    <div className='row justify-content-center'>
-                        {displayPlayers()}
-                    </div>
+                <div className='row justify-content-center classContenerPlayer'>
+                    {displayPlayers()}
                 </div>
             )}
         </div>

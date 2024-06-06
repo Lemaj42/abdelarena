@@ -8,7 +8,7 @@ export const ButtonCapacity = (props) => {
     function verifPlayer(idplayer, isPlayerAttacking) {
         let allowed = true;
         let nbPlayersAlive = 0;
-        state.players.map((player) => {
+        state.players.forEach((player) => {
             if (player.pv > 0) {
                 nbPlayersAlive++;
             }
@@ -17,7 +17,7 @@ export const ButtonCapacity = (props) => {
             dispatch(removetour());
         }
         else {
-            isPlayerAttacking.map((player) => {
+            isPlayerAttacking.forEach((player) => {
                 if (player === idplayer) {
                     allowed = false;
                 }
@@ -25,66 +25,38 @@ export const ButtonCapacity = (props) => {
         }
         return allowed;
     }
+
     const dispatch = useDispatch();
     let isPlayerAttacking = useSelector(state => state.fight.isPlayerAttacking);
+
     const combat = () => {
-
         if (verifPlayer(props.player.id, isPlayerAttacking)) {
-
-            dispatch(
-                hitMonster(50)
-            );
-            dispatch(
-                getMana({ id: props.player.id, mana: 5 })
-            );
+            dispatch(hitMonster(50));
+            dispatch(getMana({ id: props.player.id, mana: 5 }));
             setTimeout(() => {
-                dispatch(
-                    hitback(10)
-                );
-                // dispatch(
-                //     getManaMonster(0)
-                // );
+                dispatch(hitback(10));
             }, 1000);
-            dispatch(
-                addIdIsPlayerAttacking(props.player.id)
-            );
+            dispatch(addIdIsPlayerAttacking(props.player.id));
         }
     };
+
     const deffence = () => {
         if (verifPlayer(props.player.id, isPlayerAttacking)) {
-            dispatch(
-                heal({ playerId: props.player.id, healthRestored: 50, manacost: 5 })
-            );
+            dispatch(heal({ playerId: props.player.id, healthRestored: 50, manacost: 5 }));
             setTimeout(() => {
-                dispatch(
-                    hitback(10)
-                );
-                // dispatch(
-                //     getManaMonster(0)
-                // );
+                dispatch(hitback(10));
             }, 800);
-            dispatch(
-                addIdIsPlayerAttacking(props.player.id)
-            );
+            dispatch(addIdIsPlayerAttacking(props.player.id));
         }
     };
 
     const magie = () => {
         if (verifPlayer(props.player.id, isPlayerAttacking)) {
-            dispatch(
-                spellPlayer({ playerId: props.player.id }) // Passez playerId dans l'action spellPlayer
-            );
+            dispatch(spellPlayer({ playerId: props.player.id }));
             setTimeout(() => {
-                dispatch(
-                    hitback(50)
-                );
-                // dispatch(
-                //     getManaMonster(0)
-                // );
+                dispatch(hitback(50));
             }, 800);
-            dispatch(
-                addIdIsPlayerAttacking(props.player.id)
-            );
+            dispatch(addIdIsPlayerAttacking(props.player.id));
         }
     };
 
@@ -92,21 +64,26 @@ export const ButtonCapacity = (props) => {
         if (props.capacityType === "combat") {
             combat();
         } else if (props.capacityType === "deffence") {
-            console.log("deffence");
             deffence();
-        }
-        else if (props.capacityType === "magie") {
-            console.log("magie");
+        } else if (props.capacityType === "magie") {
             magie();
         }
     };
-
-
     return (
-        <button type="button" onClick={handleClick} className="btn btn-success material-tooltip-main">
-            {props.name}
-            <i className="fas fa-bomb"></i>
-            <i className="fas fa-fire-alt"></i>
-        </button>
+        <div className="radio-wrapper">
+            <input
+                type="radio"
+                id={props.capacityType}
+                name="btn"
+                className="input"
+                checked={props.checked}
+                onChange={handleClick}
+            />
+            <div className="btn">
+                <span> {props.name}</span>
+                <span className="btn__glitch">{props.name}</span>
+                <label className="number">{props.capacityType}</label>
+            </div>
+        </div >
     );
 };
