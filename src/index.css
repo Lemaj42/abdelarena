@@ -342,3 +342,11 @@ body {
 .classContenerPlayer {
   font-size: 0 !important;
 }
+
+.PunchButton {
+  bacolor: #0a9221 !important;
+}
+
+.buttonBlue:hover {
+  background-color: blue;
+}

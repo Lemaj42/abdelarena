@@ -82,7 +82,6 @@ export const ButtonCapacity = (props) => {
             <div className="btn">
                 <span> {props.name}</span>
                 <span className="btn__glitch">{props.name}</span>
-                <label className="number">{props.capacityType}</label>
             </div>
         </div >
     );
