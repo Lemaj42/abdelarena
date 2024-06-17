@@ -48,7 +48,7 @@ const PlayerCard = ({ player }) => {
                     </div>
                     <div className="container text-center">
                         <div className="row justify-content-center" style={{ opacity: displayStyle, margin: '0' }}>
-                            <div className='col-4'>
+                            <div className='col-4 btn1'>
                                 <ButtonCapacity
                                     name='Punch'
                                     capacityType='combat'
